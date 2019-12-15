@@ -1,6 +1,7 @@
 package com.cikada.zhelezoapi.repository
 
-import com.cikada.zhelezoapi.model.Motherboard
-import org.springframework.data.repository.CrudRepository
+import com.cikada.zhelezoapi.model.part.Motherboard
+import org.springframework.stereotype.Repository
 
-interface MotherboardRepository : CrudRepository<Motherboard, Long>
+@Repository
+interface MotherboardRepository : AbstractRepository<Motherboard>

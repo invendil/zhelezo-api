@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.ResponseStatus
 
 @ResponseStatus(HttpStatus.NOT_FOUND)
 class ResourceNotFoundException(
-    private val resourceName: String,
+    private val resourceName: String? = "ABSTRACT_PART",
     private val fieldName: String,
     private val fieldValue: Any
 ) : RuntimeException(String.format("%s not found with %s : '%s'", resourceName, fieldName, fieldValue))

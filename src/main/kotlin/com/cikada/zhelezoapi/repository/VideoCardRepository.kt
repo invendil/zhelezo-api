@@ -1,6 +1,7 @@
 package com.cikada.zhelezoapi.repository
 
-import com.cikada.zhelezoapi.model.VideoCard
-import org.springframework.data.repository.CrudRepository
+import com.cikada.zhelezoapi.model.part.VideoCard
+import org.springframework.stereotype.Repository
 
-interface VideoCardRepository : CrudRepository<VideoCard, Long>
+@Repository
+interface VideoCardRepository : AbstractRepository<VideoCard>

@@ -1,6 +1,7 @@
 package com.cikada.zhelezoapi.repository
 
-import com.cikada.zhelezoapi.model.Storage
-import org.springframework.data.repository.CrudRepository
+import com.cikada.zhelezoapi.model.part.Storage
+import org.springframework.stereotype.Repository
 
-interface StorageRepository : CrudRepository<Storage, Long>
+@Repository
+interface StorageRepository : AbstractRepository<Storage>

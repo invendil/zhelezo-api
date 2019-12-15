@@ -1,6 +1,7 @@
 package com.cikada.zhelezoapi.repository
 
-import com.cikada.zhelezoapi.model.PowerSuit
-import org.springframework.data.repository.CrudRepository
+import com.cikada.zhelezoapi.model.part.PowerSuit
+import org.springframework.stereotype.Repository
 
-interface PowerSuitRepository : CrudRepository<PowerSuit, Long>
+@Repository
+interface PowerSuitRepository : AbstractRepository<PowerSuit>

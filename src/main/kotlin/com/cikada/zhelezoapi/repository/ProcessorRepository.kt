@@ -1,6 +1,7 @@
 package com.cikada.zhelezoapi.repository
 
-import com.cikada.zhelezoapi.model.Processor
-import org.springframework.data.repository.CrudRepository
+import com.cikada.zhelezoapi.model.part.Processor
+import org.springframework.stereotype.Repository
 
-interface ProcessorRepository : CrudRepository<Processor, Long>
+@Repository
+interface ProcessorRepository : AbstractRepository<Processor>
