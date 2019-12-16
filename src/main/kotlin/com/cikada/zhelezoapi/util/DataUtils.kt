@@ -25,14 +25,14 @@ import kotlin.reflect.full.memberProperties
 var objectMapper = ObjectMapper()
 
 var sockets = listOf(
-    Socket().apply { name = "Socket LGA 1151" },
-    Socket().apply { name = "Socket AM4" },
-    Socket().apply { name = "Socket LGA 2066" }
+    Socket().apply { name = "LGA1151" },
+    Socket().apply { name = "AM4" },
+    Socket().apply { name = "AM3" }
 )
 var formFactors = listOf(
     FormFactor().apply { name = "ATX" },
     FormFactor().apply { name = "Mini-ITX" },
-    FormFactor().apply { name = "microATX" },
+    FormFactor().apply { name = "MicroATX" },
     FormFactor().apply { name = "Desktop" }
 )
 var mainMemoryTypes = listOf(
@@ -42,6 +42,9 @@ var mainMemoryTypes = listOf(
     MainMemoryType().apply { name = "DDR4" },
     MainMemoryType().apply { name = "DDR5" }
 )
+
+val regexTB = "[0-9]+(?=TB)".toRegex()
+val regexGB = "[0-9]+(?=GB)".toRegex()
 
 fun KClass<out AbstractPartEntity>.getPartsFromJson(): List<AbstractPartEntity> = run {
 
@@ -53,14 +56,23 @@ fun KClass<out AbstractPartEntity>.getPartsFromJson(): List<AbstractPartEntity> 
             object : TypeReference<List<PartFromJson>>() {}
         )
     val parts = partsFromJson.mapJsonToParts(this)
+    if (parts.first() is Storage)
+        (parts as List<Storage>).setMemoryDataByName()
+
     return parts
 }
 
-fun List<PartFromJson>.mapJsonToParts(clazz: KClass<out AbstractPartEntity>) = this.map {
+private fun List<Storage>.setMemoryDataByName() = forEach {
+    it.memory = regexGB.find(it.name!!)
+        ?.run { this.value.toInt() }
+        ?: regexTB.find(it.name!!)!!.value.toInt() * 1000
+}
+
+private fun List<PartFromJson>.mapJsonToParts(clazz: KClass<out AbstractPartEntity>) = this.map {
     it.mapJsonToPart(clazz)
 }
 
-fun PartFromJson.mapJsonToPart(clazz: KClass<out AbstractPartEntity>): AbstractPartEntity = let { from ->
+private fun PartFromJson.mapJsonToPart(clazz: KClass<out AbstractPartEntity>): AbstractPartEntity = let { from ->
     val part = clazz.createInstance().apply {
         description = from.description
         name = from.fullName
@@ -73,25 +85,30 @@ fun PartFromJson.mapJsonToPart(clazz: KClass<out AbstractPartEntity>): AbstractP
     return part
 }
 
-fun KProperty1<out AbstractPartEntity, *>.setByMember(part: AbstractPartEntity) = let { member ->
+fun AbstractPartEntity.setAdditionalProperties() {
+    this::class.memberProperties.forEach { member ->
+        member.setByMember(this)
+    }
+}
+
+private fun KProperty1<out AbstractPartEntity, *>.setByMember(part: AbstractPartEntity) = let { member ->
     if (member is KMutableProperty<*>) {
         when (this.name) {
-            "socket" -> member.setter.call(part, part.findSocketByClazz(sockets))
-            "formFactor" -> member.setter.call(part, part.findSocketByClazz(formFactors))
-            "mainMemoryType" -> member.setter.call(part, part.findSocketByClazz(mainMemoryTypes))
+            "socket" -> member.setter.call(part, part.findCategoryDataByClazz(sockets))
+            "formFactor" -> member.setter.call(part, part.findCategoryDataByClazz(formFactors))
+            "mainMemoryType" -> member.setter.call(part, part.findCategoryDataByClazz(mainMemoryTypes))
             else -> Unit
         }
     }
 }
 
-
-fun AbstractPartEntity.findSocketByClazz(list: List<AbstractCategory>) = let { part ->
+private fun AbstractPartEntity.findCategoryDataByClazz(list: List<AbstractCategory>) = let { part ->
     list.firstOrNull {
         part.description!!.contains(it.name!!, ignoreCase = true) || part.name!!.contains(it.name!!, ignoreCase = true)
     }
 }
 
-fun KClass<out AbstractPartEntity>.getJsonFileByPart() = "./src/main/resources/json/${when (this) {
+private fun KClass<out AbstractPartEntity>.getJsonFileByPart() = "./src/main/resources/json/${when (this) {
     Case::class -> "case"
     MainMemory::class -> "main_memory"
     Motherboard::class -> "motherboard"

@@ -8,7 +8,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories
 
 @SpringBootApplication
 @EnableJpaRepositories
-@EntityScan(basePackageClasses = [ApplicationRunner::class, Jsr310JpaConverters::class])
+@EntityScan(basePackageClasses = [ApplicationRunner::class])
 open class ApplicationRunner
 
 fun main(args: Array<String>) {

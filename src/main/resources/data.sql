@@ -1,6 +1,6 @@
 INSERT INTO `zhelezo`.`form_factor` (`name`) VALUES ('ATX');
 INSERT INTO `zhelezo`.`form_factor` (`name`) VALUES ('Mini-ITX');
-INSERT INTO `zhelezo`.`form_factor` (`name`) VALUES ('microATX');
+INSERT INTO `zhelezo`.`form_factor` (`name`) VALUES ('MicroATX');
 INSERT INTO `zhelezo`.`form_factor` (`name`) VALUES ('Desktop');
 
 INSERT INTO `zhelezo`.`socket` (`name`) VALUES ('LGA1151');
