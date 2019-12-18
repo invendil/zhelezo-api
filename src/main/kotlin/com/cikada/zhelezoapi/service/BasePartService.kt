@@ -1,6 +1,5 @@
 package com.cikada.zhelezoapi.service
 
-import com.cikada.zhelezoapi.exception.ResourceNotFoundException
 import com.cikada.zhelezoapi.model.part.AbstractPartEntity
 import com.cikada.zhelezoapi.model.part.Case
 import com.cikada.zhelezoapi.model.part.MainMemory
@@ -23,20 +22,6 @@ import kotlin.reflect.KClass
 
 @Service
 open class BasePartService {
-//    @Autowired
-//    protected lateinit var caseRepository: AbstractRepository<Case>
-//    @Autowired
-//    protected lateinit var mainMemoryRepository: AbstractRepository<MainMemory>
-//    @Autowired
-//    protected lateinit var motherboardRepository: AbstractRepository<Motherboard>
-//    @Autowired
-//    protected lateinit var powerSuitRepository: AbstractRepository<PowerSuit>
-//    @Autowired
-//    protected lateinit var processorRepository: AbstractRepository<Processor>
-//    @Autowired
-//    protected lateinit var storageRepository: AbstractRepository<Storage>
-//    @Autowired
-//    protected lateinit var videoCardRepository: AbstractRepository<VideoCard>
 
     @Autowired
     protected lateinit var caseRepository: CaseRepository
@@ -54,21 +39,40 @@ open class BasePartService {
     protected lateinit var videoCardRepository: VideoCardRepository
 
 
-//    val repositories by lazy {
-//        mapOf(
-//            Case::class to caseRepository,
-//            MainMemory::class to mainMemoryRepository,
-//            Motherboard::class to motherboardRepository,
-//            PowerSuit::class to powerSuitRepository,
-//            Processor::class to processorRepository,
-//            Storage::class to storageRepository,
-//            VideoCard::class to videoCardRepository
-//        )
-//    }
-//
-//    fun AbstractPartEntity.repository() = repositories[this::class]?.save(this)
-//
+    protected val repositoryMapByTypeName: Map<String, AbstractRepository<out AbstractPartEntity>> by lazy {
+        mapOf(
+            "case" to caseRepository,
+            "mainMemory" to mainMemoryRepository,
+            "motherboard" to motherboardRepository,
+            "powerSuit" to powerSuitRepository,
+            "processor" to processorRepository,
+            "storage" to storageRepository,
+            "videoCard" to videoCardRepository
+        )
+    }
 
+    protected val repositoryMapByClazz: Map<KClass<out AbstractPartEntity>, AbstractRepository<out AbstractPartEntity>>
+            by lazy {
+                mapOf(
+                    Case::class to caseRepository,
+                    MainMemory::class to mainMemoryRepository,
+                    Motherboard::class to motherboardRepository,
+                    PowerSuit::class to powerSuitRepository,
+                    Processor::class to processorRepository,
+                    Storage::class to storageRepository,
+                    VideoCard::class to videoCardRepository
+                )
+            }
 
-
+    companion object {
+        val typeNameToClazzMap: Map<String, KClass<out AbstractPartEntity>> = mapOf(
+            "case" to Case::class,
+            "mainMemory" to MainMemory::class,
+            "motherboard" to Motherboard::class,
+            "powerSuit" to PowerSuit::class,
+            "processor" to Processor::class,
+            "storage" to Storage::class,
+            "videoCard" to VideoCard::class
+        )
+    }
 }

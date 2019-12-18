@@ -1,11 +1,11 @@
 package com.cikada.zhelezoapi.controller
 
-import com.cikada.zhelezoapi.model.part.MainMemory
-import com.cikada.zhelezoapi.payload.PartsPayload
-import com.cikada.zhelezoapi.repository.MainMemoryRepository
-import com.cikada.zhelezoapi.util.setAdditionalProperties
+import com.cikada.zhelezoapi.model.response.BuildResponse
+import com.cikada.zhelezoapi.model.response.PartResponse
+import com.cikada.zhelezoapi.service.PartService
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.web.bind.annotation.GetMapping
+import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
@@ -17,48 +17,15 @@ import org.springframework.web.bind.annotation.RestController
 class PartController {
 
     @Autowired
-    lateinit var mainMemoryRepository: MainMemoryRepository
+    private lateinit var partService: PartService
 
-    @GetMapping("/find")
+    @GetMapping("/find/{name}")
     @ResponseBody
-    fun getMainMemories(): PartsPayload = run {
-        val response = PartsPayload().apply {
-            mainMemories = mainMemoryRepository.findAll().toList()
-                .run {
-                    forEach { it.mainMemoryType = null }
-                    this
-                }
-        }
-        response
-    }
+    fun getPart(
+        @PathVariable("name") partName: String
+    ): List<PartResponse> = partService.findPartsByPartType(partName)
 
-    @PostMapping("/save")
-    fun saveMainMemory(@RequestBody mainMemories: List<MainMemory>) {
-        mainMemories.forEach {
-            it.setAdditionalProperties()
-        }
-        mainMemoryRepository.saveAll(mainMemories)
-
-        return
-    }
-//
-//    @PostMapping("/find")
-//    @ResponseBody
-//    fun startGameSession(@RequestBody gameSessionPayload: GameSessionPayload): Collection<QuestionPayload>? =
-//            gameSessionService.startGame(gameSessionPayload)
-//
-//    @PostMapping("ask")
-//    @ResponseBody
-//    fun verifyAnswer(@RequestBody gameSessionPayload: GameSessionPayload): Boolean =
-//            gameSessionService.isAnswerRight(gameSessionPayload)
-//
-//    @GetMapping("records/{category}")
-//    @ResponseBody
-//    fun getRecordsByCategory(@PathVariable("category") categoryName: String): Collection<RecordPayload> =
-//            recordService.getByCategoryName(categoryName) ?: listOf()
-//
-//    companion object {
-//        private val logger = LoggerFactory.getLogger(PartController::class.java)
-//    }
-
+    @PostMapping("/check")
+    @ResponseBody
+    fun checkBuild(@RequestBody build: BuildResponse) = partService.checkBuild(build)
 }
