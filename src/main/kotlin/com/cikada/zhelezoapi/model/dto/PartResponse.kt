@@ -1,4 +1,4 @@
-package com.cikada.zhelezoapi.model.response
+package com.cikada.zhelezoapi.model.dto
 
 import java.math.BigDecimal
 

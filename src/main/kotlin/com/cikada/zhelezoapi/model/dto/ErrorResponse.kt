@@ -1,4 +1,4 @@
-package com.cikada.zhelezoapi.model.response
+package com.cikada.zhelezoapi.model.dto
 
 class ErrorResponse(
     val message: String? = null,

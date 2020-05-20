@@ -1,7 +1,7 @@
 package com.cikada.zhelezoapi.controller
 
-import com.cikada.zhelezoapi.model.response.BuildResponse
-import com.cikada.zhelezoapi.model.response.PartResponse
+import com.cikada.zhelezoapi.model.dto.BuildResponse
+import com.cikada.zhelezoapi.model.dto.PartResponse
 import com.cikada.zhelezoapi.service.PartService
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.web.bind.annotation.GetMapping
