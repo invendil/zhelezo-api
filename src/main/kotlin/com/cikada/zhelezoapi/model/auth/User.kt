@@ -1,6 +1,7 @@
 package com.cikada.zhelezoapi.model.auth
 
 import javax.persistence.*
+import javax.persistence.FetchType.EAGER
 
 @Entity
 @Table(name = "users")
@@ -28,7 +29,7 @@ data class User(
         @Column
         var enabled: Boolean = false,
 
-        @ManyToMany(fetch = FetchType.EAGER)
+        @ManyToMany(fetch = EAGER)
         @JoinTable(
                 name = "users_roles",
                 joinColumns = [JoinColumn(name = "user_id", referencedColumnName = "id")],
