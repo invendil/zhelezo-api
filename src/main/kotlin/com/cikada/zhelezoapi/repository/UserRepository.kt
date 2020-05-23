@@ -1,9 +1,9 @@
 package com.cikada.zhelezoapi.repository
 
 import com.cikada.zhelezoapi.model.auth.User
-import java.util.Optional
-import org.springframework.data.repository.query.Param
 import org.springframework.data.jpa.repository.JpaRepository
+import org.springframework.data.repository.query.Param
+import java.util.*
 import javax.transaction.Transactional
 
 interface UserRepository : JpaRepository<User, Long> {

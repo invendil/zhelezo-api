@@ -1,7 +1,6 @@
 package com.cikada.zhelezoapi.controller
 
 import com.cikada.zhelezoapi.config.auth.JwtProvider
-import com.cikada.zhelezoapi.model.auth.Roles
 import com.cikada.zhelezoapi.model.auth.Roles.USER
 import com.cikada.zhelezoapi.model.auth.User
 import com.cikada.zhelezoapi.model.dto.JwtResponse
@@ -12,25 +11,20 @@ import com.cikada.zhelezoapi.repository.RoleRepository
 import com.cikada.zhelezoapi.repository.UserRepository
 import com.cikada.zhelezoapi.util.objectMapper
 import com.fasterxml.jackson.module.kotlin.readValue
-import javax.validation.Valid
-import java.util.*
-import java.util.stream.Collectors
-
-import org.springframework.security.core.Authentication
 import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.http.HttpStatus
 import org.springframework.http.HttpStatus.BAD_REQUEST
 import org.springframework.http.HttpStatus.OK
 import org.springframework.http.ResponseEntity
 import org.springframework.security.authentication.AuthenticationManager
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken
-import org.springframework.security.core.context.SecurityContextHolder
-import org.springframework.security.core.userdetails.UserDetails
-import org.springframework.security.crypto.password.PasswordEncoder
-import org.springframework.security.access.prepost.PreAuthorize
 import org.springframework.security.core.GrantedAuthority
 import org.springframework.security.core.authority.SimpleGrantedAuthority
+import org.springframework.security.core.context.SecurityContextHolder
+import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.web.bind.annotation.*
+import java.util.*
+import java.util.stream.Collectors
+import javax.validation.Valid
 
 @CrossOrigin(origins = ["*"], maxAge = 3600)
 @RestController

@@ -2,16 +2,8 @@ package com.cikada.zhelezoapi.model.category
 
 import com.cikada.zhelezoapi.model.part.MainMemory
 import com.cikada.zhelezoapi.model.part.Motherboard
-import com.cikada.zhelezoapi.model.part.Processor
-import javax.persistence.Column
-import javax.persistence.Entity
-import javax.persistence.GeneratedValue
-import javax.persistence.GenerationType
+import javax.persistence.*
 import javax.persistence.GenerationType.IDENTITY
-import javax.persistence.Id
-import javax.persistence.JoinColumn
-import javax.persistence.OneToMany
-import javax.persistence.Table
 
 @Entity
 @Table(name = "main_memory_type")

@@ -4,14 +4,7 @@ import com.cikada.zhelezoapi.model.category.AbstractCategory
 import com.cikada.zhelezoapi.model.category.FormFactor
 import com.cikada.zhelezoapi.model.category.MainMemoryType
 import com.cikada.zhelezoapi.model.category.Socket
-import com.cikada.zhelezoapi.model.part.AbstractPartEntity
-import com.cikada.zhelezoapi.model.part.Case
-import com.cikada.zhelezoapi.model.part.MainMemory
-import com.cikada.zhelezoapi.model.part.Motherboard
-import com.cikada.zhelezoapi.model.part.PowerSupply
-import com.cikada.zhelezoapi.model.part.Processor
-import com.cikada.zhelezoapi.model.part.Storage
-import com.cikada.zhelezoapi.model.part.VideoCard
+import com.cikada.zhelezoapi.model.part.*
 import com.cikada.zhelezoapi.payload.PartFromJson
 import com.fasterxml.jackson.core.type.TypeReference
 import com.fasterxml.jackson.databind.ObjectMapper

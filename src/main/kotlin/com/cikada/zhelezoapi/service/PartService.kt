@@ -1,14 +1,10 @@
 package com.cikada.zhelezoapi.service
 
 import com.cikada.zhelezoapi.exception.ResourceNotFoundException
-import com.cikada.zhelezoapi.model.part.AbstractPartEntity
-import com.cikada.zhelezoapi.model.part.Case
-import com.cikada.zhelezoapi.model.part.MainMemory
-import com.cikada.zhelezoapi.model.part.Motherboard
-import com.cikada.zhelezoapi.model.part.Processor
 import com.cikada.zhelezoapi.model.dto.BuildResponse
 import com.cikada.zhelezoapi.model.dto.ErrorResponse
 import com.cikada.zhelezoapi.model.dto.PartResponse
+import com.cikada.zhelezoapi.model.part.*
 import org.springframework.stereotype.Service
 import kotlin.reflect.KClass
 

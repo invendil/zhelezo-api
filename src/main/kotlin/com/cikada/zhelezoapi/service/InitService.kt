@@ -1,12 +1,6 @@
 package com.cikada.zhelezoapi.service
 
-import com.cikada.zhelezoapi.model.part.Case
-import com.cikada.zhelezoapi.model.part.MainMemory
-import com.cikada.zhelezoapi.model.part.Motherboard
-import com.cikada.zhelezoapi.model.part.PowerSupply
-import com.cikada.zhelezoapi.model.part.Processor
-import com.cikada.zhelezoapi.model.part.Storage
-import com.cikada.zhelezoapi.model.part.VideoCard
+import com.cikada.zhelezoapi.model.part.*
 import com.cikada.zhelezoapi.repository.FormFactorRepository
 import com.cikada.zhelezoapi.repository.MainMemoryTypeRepository
 import com.cikada.zhelezoapi.repository.SocketRepository
@@ -14,7 +8,6 @@ import com.cikada.zhelezoapi.util.formFactors
 import com.cikada.zhelezoapi.util.getPartsFromJson
 import com.cikada.zhelezoapi.util.mainMemoryTypes
 import com.cikada.zhelezoapi.util.sockets
-
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
 import java.io.IOException

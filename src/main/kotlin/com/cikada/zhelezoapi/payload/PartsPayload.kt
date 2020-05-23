@@ -1,12 +1,6 @@
 package com.cikada.zhelezoapi.payload
 
-import com.cikada.zhelezoapi.model.part.Case
-import com.cikada.zhelezoapi.model.part.MainMemory
-import com.cikada.zhelezoapi.model.part.Motherboard
-import com.cikada.zhelezoapi.model.part.PowerSupply
-import com.cikada.zhelezoapi.model.part.Processor
-import com.cikada.zhelezoapi.model.part.Storage
-import com.cikada.zhelezoapi.model.part.VideoCard
+import com.cikada.zhelezoapi.model.part.*
 
 class PartsPayload {
     var cases: List<Case>? = null

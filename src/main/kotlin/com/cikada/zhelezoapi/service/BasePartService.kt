@@ -1,21 +1,7 @@
 package com.cikada.zhelezoapi.service
 
-import com.cikada.zhelezoapi.model.part.AbstractPartEntity
-import com.cikada.zhelezoapi.model.part.Case
-import com.cikada.zhelezoapi.model.part.MainMemory
-import com.cikada.zhelezoapi.model.part.Motherboard
-import com.cikada.zhelezoapi.model.part.PowerSupply
-import com.cikada.zhelezoapi.model.part.Processor
-import com.cikada.zhelezoapi.model.part.Storage
-import com.cikada.zhelezoapi.model.part.VideoCard
-import com.cikada.zhelezoapi.repository.AbstractRepository
-import com.cikada.zhelezoapi.repository.CaseRepository
-import com.cikada.zhelezoapi.repository.MainMemoryRepository
-import com.cikada.zhelezoapi.repository.MotherboardRepository
-import com.cikada.zhelezoapi.repository.PowerSuitRepository
-import com.cikada.zhelezoapi.repository.ProcessorRepository
-import com.cikada.zhelezoapi.repository.StorageRepository
-import com.cikada.zhelezoapi.repository.VideoCardRepository
+import com.cikada.zhelezoapi.model.part.*
+import com.cikada.zhelezoapi.repository.*
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
 import kotlin.reflect.KClass

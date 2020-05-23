@@ -1,9 +1,11 @@
 package com.cikada.zhelezoapi.model.part
 
-import jdk.jfr.Description
 import java.math.BigDecimal
-import javax.persistence.*
+import javax.persistence.Column
+import javax.persistence.GeneratedValue
 import javax.persistence.GenerationType.IDENTITY
+import javax.persistence.Id
+import javax.persistence.MappedSuperclass
 
 @MappedSuperclass
 open class AbstractPartEntity(
