@@ -3,12 +3,12 @@ package com.cikada.zhelezoapi.model.part
 import jdk.jfr.Description
 import java.math.BigDecimal
 import javax.persistence.*
-import javax.persistence.DiscriminatorType.STRING
+import javax.persistence.GenerationType.IDENTITY
 
 @MappedSuperclass
 open class AbstractPartEntity(
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = IDENTITY)
     @Column(name = "id", unique = true, nullable = false)
     val id: Long? = null,
 
