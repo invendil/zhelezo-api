@@ -8,7 +8,7 @@ import com.cikada.zhelezoapi.model.part.AbstractPartEntity
 import com.cikada.zhelezoapi.model.part.Case
 import com.cikada.zhelezoapi.model.part.MainMemory
 import com.cikada.zhelezoapi.model.part.Motherboard
-import com.cikada.zhelezoapi.model.part.PowerSuit
+import com.cikada.zhelezoapi.model.part.PowerSupply
 import com.cikada.zhelezoapi.model.part.Processor
 import com.cikada.zhelezoapi.model.part.Storage
 import com.cikada.zhelezoapi.model.part.VideoCard
@@ -22,7 +22,7 @@ import kotlin.reflect.KProperty1
 import kotlin.reflect.full.createInstance
 import kotlin.reflect.full.memberProperties
 
-var objectMapper = ObjectMapper()
+val objectMapper = ObjectMapper()
 
 var sockets = listOf(
     Socket().apply { name = "LGA1151" },
@@ -112,7 +112,7 @@ private fun KClass<out AbstractPartEntity>.getJsonFileByPart() = "./src/main/res
     Case::class -> "case"
     MainMemory::class -> "main_memory"
     Motherboard::class -> "motherboard"
-    PowerSuit::class -> "power_suit"
+    PowerSupply::class -> "power_suit"
     Processor::class -> "processor"
     Storage::class -> "storage"
     VideoCard::class -> "video_card"

@@ -10,9 +10,6 @@ import javax.persistence.Table
 
 @Entity
 @Table(name = "video_card")
-data class VideoCard(
-    @Id
-    @GeneratedValue(strategy = IDENTITY)
-    @Column(name = "id", unique = true, nullable = false)
-    val id: Long? = null
+class VideoCard(
+
 ) : AbstractPartEntity()

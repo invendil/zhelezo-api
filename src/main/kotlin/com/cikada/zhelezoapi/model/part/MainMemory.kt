@@ -19,11 +19,6 @@ import javax.persistence.Table
 @Entity
 @Table(name = "main_memory")
 data class MainMemory(
-    @Id
-    @GeneratedValue(strategy = IDENTITY)
-    @Column(name = "id", unique = true, nullable = false)
-    val id: Long? = null,
-
     @ManyToOne
     @JoinColumn(name = "main_memory_type_id", nullable = false)
     var mainMemoryType: MainMemoryType? = null

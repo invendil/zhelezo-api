@@ -4,7 +4,7 @@ import com.cikada.zhelezoapi.model.part.AbstractPartEntity
 import com.cikada.zhelezoapi.model.part.Case
 import com.cikada.zhelezoapi.model.part.MainMemory
 import com.cikada.zhelezoapi.model.part.Motherboard
-import com.cikada.zhelezoapi.model.part.PowerSuit
+import com.cikada.zhelezoapi.model.part.PowerSupply
 import com.cikada.zhelezoapi.model.part.Processor
 import com.cikada.zhelezoapi.model.part.Storage
 import com.cikada.zhelezoapi.model.part.VideoCard
@@ -57,7 +57,7 @@ open class BasePartService {
                     Case::class to caseRepository,
                     MainMemory::class to mainMemoryRepository,
                     Motherboard::class to motherboardRepository,
-                    PowerSuit::class to powerSuitRepository,
+                    PowerSupply::class to powerSuitRepository,
                     Processor::class to processorRepository,
                     Storage::class to storageRepository,
                     VideoCard::class to videoCardRepository
@@ -69,7 +69,7 @@ open class BasePartService {
             "case" to Case::class,
             "mainMemory" to MainMemory::class,
             "motherboard" to Motherboard::class,
-            "powerSuit" to PowerSuit::class,
+            "powerSuit" to PowerSupply::class,
             "processor" to Processor::class,
             "storage" to Storage::class,
             "videoCard" to VideoCard::class

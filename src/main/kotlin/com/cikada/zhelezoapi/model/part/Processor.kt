@@ -15,11 +15,6 @@ import javax.persistence.ManyToOne
 
 @Entity
 data class Processor(
-    @Id
-    @GeneratedValue(strategy = IDENTITY)
-    @Column(name = "id", unique = true, nullable = false)
-    val id: Long? = null,
-
     @ManyToOne
     @JoinColumn(name = "socket_id", nullable = false)
     var socket: Socket? = null

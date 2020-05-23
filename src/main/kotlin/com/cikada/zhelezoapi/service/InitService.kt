@@ -3,7 +3,7 @@ package com.cikada.zhelezoapi.service
 import com.cikada.zhelezoapi.model.part.Case
 import com.cikada.zhelezoapi.model.part.MainMemory
 import com.cikada.zhelezoapi.model.part.Motherboard
-import com.cikada.zhelezoapi.model.part.PowerSuit
+import com.cikada.zhelezoapi.model.part.PowerSupply
 import com.cikada.zhelezoapi.model.part.Processor
 import com.cikada.zhelezoapi.model.part.Storage
 import com.cikada.zhelezoapi.model.part.VideoCard
@@ -15,13 +15,9 @@ import com.cikada.zhelezoapi.util.getPartsFromJson
 import com.cikada.zhelezoapi.util.mainMemoryTypes
 import com.cikada.zhelezoapi.util.sockets
 
-import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.stereotype.Repository
 import org.springframework.stereotype.Service
 import java.io.IOException
-import java.util.ArrayList
-import java.util.Arrays
 
 @Service
 class InitService : BasePartService() {
@@ -40,7 +36,7 @@ class InitService : BasePartService() {
         caseRepository.saveAll(Case::class.getPartsFromJson().filterIsInstance<Case>())
         mainMemoryRepository.saveAll(MainMemory::class.getPartsFromJson().filterIsInstance<MainMemory>())
         motherboardRepository.saveAll(Motherboard::class.getPartsFromJson().filterIsInstance<Motherboard>())
-        powerSuitRepository.saveAll(PowerSuit::class.getPartsFromJson().filterIsInstance<PowerSuit>())
+        powerSuitRepository.saveAll(PowerSupply::class.getPartsFromJson().filterIsInstance<PowerSupply>())
         processorRepository.saveAll(Processor::class.getPartsFromJson().filterIsInstance<Processor>())
         storageRepository.saveAll(Storage::class.getPartsFromJson().filterIsInstance<Storage>())
         videoCardRepository.saveAll(VideoCard::class.getPartsFromJson().filterIsInstance<VideoCard>())

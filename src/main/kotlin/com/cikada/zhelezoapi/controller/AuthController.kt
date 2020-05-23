@@ -10,6 +10,8 @@ import com.cikada.zhelezoapi.model.dto.NewUser
 import com.cikada.zhelezoapi.model.dto.ResponseMessage
 import com.cikada.zhelezoapi.repository.RoleRepository
 import com.cikada.zhelezoapi.repository.UserRepository
+import com.cikada.zhelezoapi.util.objectMapper
+import com.fasterxml.jackson.module.kotlin.readValue
 import javax.validation.Valid
 import java.util.*
 import java.util.stream.Collectors
@@ -28,11 +30,7 @@ import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.security.access.prepost.PreAuthorize
 import org.springframework.security.core.GrantedAuthority
 import org.springframework.security.core.authority.SimpleGrantedAuthority
-import org.springframework.web.bind.annotation.CrossOrigin
-import org.springframework.web.bind.annotation.PostMapping
-import org.springframework.web.bind.annotation.RequestBody
-import org.springframework.web.bind.annotation.RequestMapping
-import org.springframework.web.bind.annotation.RestController
+import org.springframework.web.bind.annotation.*
 
 @CrossOrigin(origins = ["*"], maxAge = 3600)
 @RestController
@@ -53,7 +51,6 @@ class AuthController() {
 
     @Autowired
     lateinit var jwtProvider: JwtProvider
-
 
     @PostMapping("/signin")
     fun authenticateUser(@Valid @RequestBody loginRequest: LoginUser): ResponseEntity<*> {
@@ -114,6 +111,9 @@ class AuthController() {
         }
     }
 
+    @GetMapping("/test")
+    fun test() = authenticateUser(objectMapper.readValue(user))
+
     private fun emailExists(email: String): Boolean {
         return userRepository.findByUsername(email).isPresent
     }
@@ -122,4 +122,10 @@ class AuthController() {
         return userRepository.findByUsername(username).isPresent
     }
 
+    companion object {
+        val user = "{\n" +
+            "  \"username\": \"cikada29\",\n" +
+            "  \"password\":  123\n" +
+            "}"
+    }
 }

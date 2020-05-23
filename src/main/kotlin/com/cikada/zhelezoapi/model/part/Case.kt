@@ -20,11 +20,6 @@ import javax.persistence.Table
 @Entity
 @Table(name = "pc_case")
 data class Case(
-    @Id
-    @GeneratedValue(strategy = IDENTITY)
-    @Column(name = "id", unique = true, nullable = false)
-    val id: Long? = null,
-
     @ManyToOne
     @JoinColumn(name = "form_factor_id", nullable = false)
     var formFactor: FormFactor? = null
