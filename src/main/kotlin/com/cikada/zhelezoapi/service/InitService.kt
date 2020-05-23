@@ -3,11 +3,9 @@ package com.cikada.zhelezoapi.service
 import com.cikada.zhelezoapi.model.part.*
 import com.cikada.zhelezoapi.repository.FormFactorRepository
 import com.cikada.zhelezoapi.repository.MainMemoryTypeRepository
+import com.cikada.zhelezoapi.repository.RoleRepository
 import com.cikada.zhelezoapi.repository.SocketRepository
-import com.cikada.zhelezoapi.util.formFactors
-import com.cikada.zhelezoapi.util.getPartsFromJson
-import com.cikada.zhelezoapi.util.mainMemoryTypes
-import com.cikada.zhelezoapi.util.sockets
+import com.cikada.zhelezoapi.util.*
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
 import java.io.IOException
@@ -20,12 +18,15 @@ class InitService : BasePartService() {
     lateinit var formFactorRepository: FormFactorRepository
     @Autowired
     lateinit var mainMemoryTypeRepository: MainMemoryTypeRepository
+    @Autowired
+    lateinit var roleRepository: RoleRepository
 
     @Throws(IOException::class)
     fun initParts() {
-        sockets = socketRepository.findAll().toList()
-        formFactors = formFactorRepository.findAll().toList()
-        mainMemoryTypes = mainMemoryTypeRepository.findAll().toList()
+        roleRepository.saveAll(roles)
+        sockets = socketRepository.saveAll(sockets).toList()
+        formFactors = formFactorRepository.saveAll(formFactors).toList()
+        mainMemoryTypes = mainMemoryTypeRepository.saveAll(mainMemoryTypes).toList()
         caseRepository.saveAll(Case::class.getPartsFromJson().filterIsInstance<Case>())
         mainMemoryRepository.saveAll(MainMemory::class.getPartsFromJson().filterIsInstance<MainMemory>())
         motherboardRepository.saveAll(Motherboard::class.getPartsFromJson().filterIsInstance<Motherboard>())

@@ -1,5 +1,7 @@
 package com.cikada.zhelezoapi.util
 
+import com.cikada.zhelezoapi.model.auth.Role
+import com.cikada.zhelezoapi.model.auth.Roles
 import com.cikada.zhelezoapi.model.category.AbstractCategory
 import com.cikada.zhelezoapi.model.category.FormFactor
 import com.cikada.zhelezoapi.model.category.MainMemoryType
@@ -17,6 +19,7 @@ import kotlin.reflect.full.memberProperties
 
 val objectMapper = ObjectMapper()
 
+var roles = Roles.values().map { Role(name = it.name) }
 var sockets = listOf(
     Socket().apply { name = "LGA1151" },
     Socket().apply { name = "AM4" },

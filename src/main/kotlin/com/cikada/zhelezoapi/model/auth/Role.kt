@@ -14,7 +14,7 @@ data class Role(
     val name: String? = null
 )
 
-enum class Roles(name: String) {
-    ADMIN("ADMIN"),
-    USER("USER")
+enum class Roles {
+    ADMIN,
+    USER
 }
